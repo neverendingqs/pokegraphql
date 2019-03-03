@@ -1,19 +1,10 @@
-const fetch = require('node-fetch');
 const {
   GraphQLID,
   GraphQLObjectType,
   GraphQLString
 } = require('graphql');
 
-const prefix = 'https://pokeapi.co/api/v2';
-
-const PokemonType = new GraphQLObjectType({
-  name: 'Pokemon',
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString }
-  })
-});
+const { get } = require('../../pokeapi');
 
 module.exports = {
   type: new GraphQLObjectType({
@@ -24,9 +15,8 @@ module.exports = {
     })
   }),
   args: { id: { type: GraphQLID } },
-  resolve(parent, args){
-    return fetch(`${prefix}/pokemon/${args.id}`)
-      .then(resp => resp.json())
+  resolve(parent, { id }){
+    return get(`pokemon/${id}`)
       .then(({ id, name }) => ({ id, name }))
   }
 }
