@@ -22,8 +22,11 @@ module.exports = {
       location_area_encounters: { type: GraphQLString },
     })
   }),
-  args: { id: { type: GraphQLID } },
-  resolve(parent, { id }) {
-    return get(`pokemon/${id}`);
+  args: {
+    id: { type: GraphQLID },
+    name: { type: GraphQLString }
+  },
+  resolve(parent, { id, name }) {
+    return get(`pokemon/${id || name}`);
   }
 }
