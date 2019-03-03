@@ -1,5 +1,7 @@
 const {
+  GraphQLBoolean,
   GraphQLID,
+  GraphQLInt,
   GraphQLObjectType,
   GraphQLString
 } = require('graphql');
@@ -11,12 +13,17 @@ module.exports = {
     name: 'Pokemon',
     fields: () => ({
       id: { type: GraphQLID },
-      name: { type: GraphQLString }
+      name: { type: GraphQLString },
+      base_experience: { type: GraphQLInt },
+      height: { type: GraphQLInt },
+      is_default: { type: GraphQLBoolean },
+      order: { type: GraphQLInt },
+      weight: { type: GraphQLInt },
+      location_area_encounters: { type: GraphQLString },
     })
   }),
   args: { id: { type: GraphQLID } },
-  resolve(parent, { id }){
-    return get(`pokemon/${id}`)
-      .then(({ id, name }) => ({ id, name }))
+  resolve(parent, { id }) {
+    return get(`pokemon/${id}`);
   }
 }
