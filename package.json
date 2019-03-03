@@ -4,7 +4,9 @@
   "description": "GraphQL for PokeAPI",
   "main": "src/server.js",
   "scripts": {
+    "build": "netlify-lambda build server",
     "dev": "nodemon server-local",
+    "serve": "netlify-lambda serve server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,9 +27,11 @@
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.1.1",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "serverless-http": "^1.9.1"
   },
   "devDependencies": {
+    "netlify-lambda": "^1.4.2",
     "nodemon": "^1.18.10"
   }
 }
