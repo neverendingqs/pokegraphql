@@ -8,6 +8,7 @@ const {
 } = require('graphql');
 
 const ability = require('./ability');
+const form = require('./form');
 
 const { get } = require('../../../pokeapi');
 
@@ -15,6 +16,7 @@ module.exports = {
   type: new GraphQLObjectType({
     name: 'Pokemon',
     fields: () => ({
+      // TODO
       id: { type: GraphQLID },
       name: { type: GraphQLString },
       base_experience: { type: GraphQLInt },
@@ -28,6 +30,15 @@ module.exports = {
           return Promise.all(
             parents.abilities
               .map(({ ability: { name } }) =>  ability.resolve(null, { name }))
+          );
+        }
+      },
+      forms: {
+        type: new GraphQLList(form.type),
+        resolve(parents, args) {
+          return Promise.all(
+            parents.forms
+              .map(({ name }) =>  form.resolve(null, { name }))
           );
         }
       },
