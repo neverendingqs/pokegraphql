@@ -2,9 +2,12 @@ const {
   GraphQLBoolean,
   GraphQLID,
   GraphQLInt,
+  GraphQLList,
   GraphQLObjectType,
   GraphQLString
 } = require('graphql');
+
+const pokemonAbility = require('./pokemonAbility');
 
 const { get } = require('../../pokeapi');
 
@@ -19,6 +22,15 @@ module.exports = {
       is_default: { type: GraphQLBoolean },
       order: { type: GraphQLInt },
       weight: { type: GraphQLInt },
+      abilities: {
+        type: new GraphQLList(pokemonAbility.type),
+        resolve(parents, args) {
+          return Promise.all(
+            parents.abilities
+              .map(({ ability: { name } }) =>  pokemonAbility.resolve(null, { name }))
+          );
+        }
+      },
       location_area_encounters: { type: GraphQLString },
     })
   }),
