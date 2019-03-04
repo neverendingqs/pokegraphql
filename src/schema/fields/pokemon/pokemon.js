@@ -7,9 +7,9 @@ const {
   GraphQLString
 } = require('graphql');
 
-const pokemonAbility = require('./pokemonAbility');
+const ability = require('./ability');
 
-const { get } = require('../../pokeapi');
+const { get } = require('../../../pokeapi');
 
 module.exports = {
   type: new GraphQLObjectType({
@@ -23,11 +23,11 @@ module.exports = {
       order: { type: GraphQLInt },
       weight: { type: GraphQLInt },
       abilities: {
-        type: new GraphQLList(pokemonAbility.type),
+        type: new GraphQLList(ability.type),
         resolve(parents, args) {
           return Promise.all(
             parents.abilities
-              .map(({ ability: { name } }) =>  pokemonAbility.resolve(null, { name }))
+              .map(({ ability: { name } }) =>  ability.resolve(null, { name }))
           );
         }
       },

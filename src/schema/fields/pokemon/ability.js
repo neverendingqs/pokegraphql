@@ -5,11 +5,11 @@ const {
   GraphQLString
 } = require('graphql');
 
-const { get } = require('../../pokeapi');
+const { get } = require('../../../pokeapi');
 
 module.exports = {
   type: new GraphQLObjectType({
-    name: 'PokemonAbility',
+    name: 'Ability',
     fields: () => ({
       id: { type: GraphQLID },
       name: { type: GraphQLString },
