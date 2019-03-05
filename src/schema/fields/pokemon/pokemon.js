@@ -9,6 +9,9 @@ const {
 
 const ability = require('./ability');
 const form = require('./form');
+const version = require('../games/version');
+
+const VersionGameIndex = require('../../types/versionGameIndex');
 
 const { get } = require('../../../pokeapi');
 
@@ -39,6 +42,21 @@ module.exports = {
           return Promise.all(
             parents.forms
               .map(({ name }) =>  form.resolve(null, { name }))
+          );
+        }
+      },
+      game_indices: {
+        type: new GraphQLList(VersionGameIndex),
+        resolve(parents, args) {
+          return Promise.all(
+            parents.game_indices.map(gi =>
+              version
+                .resolve(null, gi.version)
+                .then(version => ({
+                  game_index: gi.game_index,
+                  version
+                }))
+            )
           );
         }
       },
