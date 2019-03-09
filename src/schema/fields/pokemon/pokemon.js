@@ -9,8 +9,10 @@ const {
 
 const ability = require('./ability');
 const form = require('./form');
+
 const version = require('../games/version');
 
+const PokemonHeldItemType = require('../../types/pokemonHeldItem');
 const VersionGameIndex = require('../../types/versionGameIndex');
 
 const { get } = require('../../../pokeapi');
@@ -59,6 +61,9 @@ module.exports = {
             )
           );
         }
+      },
+      held_items: {
+        type: new GraphQLList(PokemonHeldItemType)
       },
       location_area_encounters: { type: GraphQLString },
     })
