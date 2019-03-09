@@ -3,12 +3,17 @@ const {
   GraphQLObjectType
 } = require('graphql');
 
-const VersionType = require('../fields/games/version').type;
+const version = require('../fields/games/version');
 
 module.exports = new GraphQLObjectType({
   name: 'VersionGameIndex',
   fields: () => ({
     game_index: { type: GraphQLInt },
-    version: { type: VersionType },
+    version: {
+      type: version.type,
+      resolve(parents, args) {
+        return version.resolve(null, parents.version);
+      }
+    },
   })
 })
