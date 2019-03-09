@@ -47,24 +47,8 @@ module.exports = {
           );
         }
       },
-      game_indices: {
-        type: new GraphQLList(VersionGameIndex),
-        resolve(parents, args) {
-          return Promise.all(
-            parents.game_indices.map(gi =>
-              version
-                .resolve(null, gi.version)
-                .then(version => ({
-                  game_index: gi.game_index,
-                  version
-                }))
-            )
-          );
-        }
-      },
-      held_items: {
-        type: new GraphQLList(PokemonHeldItemType)
-      },
+      game_indices: { type: new GraphQLList(VersionGameIndex) },
+      held_items: { type: new GraphQLList(PokemonHeldItemType) },
       location_area_encounters: { type: GraphQLString },
     })
   }),
