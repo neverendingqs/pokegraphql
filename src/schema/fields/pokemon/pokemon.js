@@ -10,8 +10,6 @@ const {
 const ability = require('./ability');
 const form = require('./form');
 
-const version = require('../games/version');
-
 const PokemonHeldItemType = require('../../types/pokemonHeldItem');
 const VersionGameIndex = require('../../types/versionGameIndex');
 
