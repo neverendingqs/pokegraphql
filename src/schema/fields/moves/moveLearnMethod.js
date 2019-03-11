@@ -4,7 +4,7 @@ const {
   GraphQLString
 } = require('graphql');
 
-const NameType = require('../../types/name');
+const NameType = require('../../types/utility/name');
 
 const { get } = require('../../../pokeapi');
 

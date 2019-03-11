@@ -3,12 +3,12 @@ const {
   GraphQLString
 } = require('graphql');
 
-const language = require('../fields/language');
+const language = require('../../fields/language');
 
 module.exports = new GraphQLObjectType({
-  name: 'Description',
+  name: 'Name',
   fields: () => ({
-    description: { type: GraphQLString },
+    name: { type: GraphQLString },
     language: {
       type: language.type,
       resolve(parent, args) {

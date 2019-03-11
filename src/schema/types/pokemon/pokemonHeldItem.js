@@ -3,7 +3,7 @@ const {
   GraphQLObjectType
 } = require('graphql');
 
-const item = require('../fields/items/item');
+const item = require('../../fields/items/item');
 const PokemonHeldItemVersion = require('./pokemonHeldItemVersion');
 
 module.exports = new GraphQLObjectType({

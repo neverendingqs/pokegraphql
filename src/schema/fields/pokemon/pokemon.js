@@ -10,8 +10,10 @@ const {
 const ability = require('./ability');
 const form = require('./form');
 
-const PokemonHeldItemType = require('../../types/pokemonHeldItem');
-const VersionGameIndex = require('../../types/versionGameIndex');
+const move = require('../moves/move');
+
+const PokemonHeldItemType = require('../../types/pokemon/pokemonHeldItem');
+const VersionGameIndex = require('../../types/utility/versionGameIndex');
 
 const { get } = require('../../../pokeapi');
 
@@ -32,7 +34,7 @@ module.exports = {
         resolve(parents, args) {
           return Promise.all(
             parents.abilities
-              .map(({ ability: { name } }) =>  ability.resolve(null, { name }))
+              .map(({ ability: { name } }) => ability.resolve(null, { name }))
           );
         }
       },
